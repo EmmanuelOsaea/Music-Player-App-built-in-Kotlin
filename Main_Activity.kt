@@ -1,5 +1,8 @@
 package com.example.musicplayer
 
+
+
+import android.media.MediaPlayer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -35,12 +38,7 @@ class MainActivity : AppCompatActivity() {
 }
 private val viewModel: MusicViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val adapter = TrackAdapter()
+      val adapter = TrackAdapter()
         binding.recyclerTracks.layoutManager = LinearLayoutManager(this)
         binding.recyclerTracks.adapter = adapter
 
