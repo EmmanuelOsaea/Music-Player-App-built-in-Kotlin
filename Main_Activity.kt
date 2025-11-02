@@ -74,3 +74,8 @@ switchTheme.setOnCheckedChangeListener { _, isChecked ->
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }
+
+val intent = Intent(this, MusicService::class.java)
+intent.putExtra("song_res", R.raw.sample_music) // replace with actual song
+startForegroundService(intent)
+
