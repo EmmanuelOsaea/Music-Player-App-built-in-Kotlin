@@ -85,18 +85,6 @@ class MusicService : Service() {
         )
         val manager = getSystemService(NotificationManager::class.java)
         manager.createNotificationChannel(serviceChannel)
-    }
-
-    override fun onDestroy() {
-        mediaPlayer.release()
-        super.onDestroy()
-    }
-
-    override fun onBind(intent: Intent?): IBinder? = null
-}
-
-
-private fun createNotification(): Notification {
     val playIntent = Intent(this, MusicReceiver::class.java).setAction("PLAY")
     val pauseIntent = Intent(this, MusicReceiver::class.java).setAction("PAUSE")
     val stopIntent = Intent(this, MusicReceiver::class.java).setAction("STOP")
@@ -119,4 +107,14 @@ private fun createNotification(): Notification {
         .setStyle(androidx.media.app.NotificationCompat.MediaStyle())
         .setOngoing(true)
         .build()
+    }   }
+
+    override fun onDestroy() {
+        mediaPlayer.release()
+        super.onDestroy()
+    }
+
+    override fun onBind(intent: Intent?): IBinder? = null
 }
+
+
