@@ -24,3 +24,4 @@
 
 <activity android:name=".ui.MainActivity" />
 <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
