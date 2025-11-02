@@ -94,3 +94,29 @@ class MusicService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? = null
 }
+
+
+private fun createNotification(): Notification {
+    val playIntent = Intent(this, MusicReceiver::class.java).setAction("PLAY")
+    val pauseIntent = Intent(this, MusicReceiver::class.java).setAction("PAUSE")
+    val stopIntent = Intent(this, MusicReceiver::class.java).setAction("STOP")
+
+    val playPending = PendingIntent.getBroadcast(this, 0, playIntent, PendingIntent.FLAG_IMMUTABLE)
+    val pausePending = PendingIntent.getBroadcast(this, 1, pauseIntent, PendingIntent.FLAG_IMMUTABLE)
+    val stopPending = PendingIntent.getBroadcast(this, 2, stopIntent, PendingIntent.FLAG_IMMUTABLE)
+
+    val intent = Intent(this, MainActivity::class.java)
+    val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+    return NotificationCompat.Builder(this, CHANNEL_ID)
+        .setContentTitle("🎶 Music Player")
+        .setContentText("Now Playing")
+        .setSmallIcon(R.drawable.ic_music_note)
+        .setContentIntent(pendingIntent)
+        .addAction(R.drawable.ic_play, "Play", playPending)
+        .addAction(R.drawable.ic_pause, "Pause", pausePending)
+        .addAction(R.drawable.ic_stop, "Stop", stopPending)
+        .setStyle(androidx.media.app.NotificationCompat.MediaStyle())
+        .setOngoing(true)
+        .build()
+}
