@@ -7,6 +7,14 @@
         android:name=".MusicService"
         android:enabled="true"
         android:exported="false" />
+
+<service
+    android:name=".service.MusicService"
+    android:foregroundServiceType="mediaPlayback"
+    android:exported="false" />
+
+
+
 </application>
 
 
