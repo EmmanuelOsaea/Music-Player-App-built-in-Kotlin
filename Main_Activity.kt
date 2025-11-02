@@ -6,7 +6,8 @@ import android.os.Bundle
 import com.example.musicplayer.databinding.ActivityMainBinding
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
- import com.example.musicplayer.ui.MusicViewModel
+import com.example.musicplayer.ui.MusicViewModel
+import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -60,4 +61,16 @@ private val viewModel: MusicViewModel by viewModels()
 val equalizerBtn = findViewById<Button>(R.id.btnEqualizer)
 equalizerBtn.setOnClickListener {
     startActivity(Intent(this, EqualizerActivity::class.java))
+}
+
+
+
+
+val switchTheme = findViewById<Switch>(R.id.switchTheme)
+switchTheme.setOnCheckedChangeListener { _, isChecked ->
+    if (isChecked) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+    } else {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+    }
 }
