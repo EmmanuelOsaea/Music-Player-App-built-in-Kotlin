@@ -57,3 +57,7 @@ private val viewModel: MusicViewModel by viewModels()
         viewModel.loadTracks()
     }
 }
+val equalizerBtn = findViewById<Button>(R.id.btnEqualizer)
+equalizerBtn.setOnClickListener {
+    startActivity(Intent(this, EqualizerActivity::class.java))
+}
