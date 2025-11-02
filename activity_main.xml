@@ -130,3 +130,12 @@
     android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
+
+
+<Switch
+    android:id="@+id/switchTheme"
+    android:text="🌙 Dark Mode"
+    android:textColor="@android:color/white"
+    android:layout_marginTop="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
