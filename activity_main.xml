@@ -122,3 +122,11 @@
         android:background="@android:color/transparent" />
 
 </LinearLayout>
+
+
+<Button
+    android:id="@+id/btnEqualizer"
+    android:text="🎚️ Equalizer"
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
