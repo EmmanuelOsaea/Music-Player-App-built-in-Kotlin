@@ -1,0 +1,26 @@
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/motionLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    motion:layoutDescription="@xml/scene_player">
+
+    <!-- big album art -->
+    <ImageView
+        android:id="@+id/ivAlbumArt"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_music_note"
+        android:layout_marginTop="24dp"
+        motion:layout_constraintTop_toTopOf="parent"
+        motion:layout_constraintStart_toStartOf="parent"
+        motion:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- controls and other views here -->
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
+
+      barVisualizer.visibility = View.INVISIBLE
+barVisualizer.animate().alpha(1f).setDuration(220).withStartAction { barVisualizer.visibility = View.VISIBLE }
