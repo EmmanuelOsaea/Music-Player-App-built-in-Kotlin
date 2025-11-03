@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <!-- Start (collapsed mini player) -->
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:alpha="0.8"/>
+
+        <Constraint android:id="@id/ivAlbumArt">
+            <Layout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="16dp" />
+        </Constraint>
+
+        <Constraint android:id="@id/layoutControls">
+            <Layout
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="@id/ivAlbumArt"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="24dp"/>
+        </Constraint>
+    </ConstraintSet>
+
+    <!-- End (expanded full player) -->
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@id/ivAlbumArt">
+            <Layout
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="32dp"/>
+        </Constraint>
+
+        <Constraint android:id="@id/layoutControls">
+            <Layout
+                motion:layout_constraintTop_toBottomOf="@id/ivAlbumArt"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"/>
+        </Constraint>
+    </ConstraintSet>
+
+    <!-- Transition animation -->
+    <Transition
+        motion:constraintSetStart="@id/start"
+        motion:constraintSetEnd="@id/end"
+        motion:duration="600">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@id/ivAlbumArt"
+            motion:touchAnchorSide="bottom"/>
+    </Transition>
+
+</MotionScene>
