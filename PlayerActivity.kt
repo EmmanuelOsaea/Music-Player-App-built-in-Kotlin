@@ -25,9 +25,17 @@ class PlayerActivity : AppCompatActivity() {
             if (mediaPlayer!!.isPlaying) {
                 mediaPlayer!!.pause()
                 binding.playPauseBtn.text = "Play"
+          val serviceIntent = Intent(this, MusicService::class.java)
+serviceIntent.action = "PAUSE"
+startService(serviceIntent)
+            
             } else {
                 mediaPlayer!!.start()
                 binding.playPauseBtn.text = "Pause"
+          val serviceIntent = Intent(this, MusicService::class.java)
+serviceIntent.action = "PLAY"
+startService(serviceIntent)
+            
             }
         }
     }
