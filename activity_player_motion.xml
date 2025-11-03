@@ -6,21 +6,48 @@
     android:layout_height="match_parent"
     motion:layoutDescription="@xml/scene_player">
 
-    <!-- big album art -->
     <ImageView
         android:id="@+id/ivAlbumArt"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_music_note"
+        android:transitionName="albumArtTransition"
         android:layout_marginTop="24dp"
         motion:layout_constraintTop_toTopOf="parent"
         motion:layout_constraintStart_toStartOf="parent"
         motion:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- controls and other views here -->
+    <LinearLayout
+        android:id="@+id/layoutControls"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        motion:layout_constraintTop_toBottomOf="@id/ivAlbumArt"
+        motion:layout_constraintStart_toStartOf="parent"
+        motion:layout_constraintEnd_toEndOf="parent">
 
+        <ImageButton
+            android:id="@+id/btnPrev"
+            android:src="@drawable/ic_skip_previous"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="12dp" />
+
+        <ImageButton
+            android:id="@+id/btnPlayPause"
+            android:src="@drawable/ic_play"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="12dp" />
+
+        <ImageButton
+            android:id="@+id/btnNext"
+            android:src="@drawable/ic_skip_next"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="12dp" />
+    </LinearLayout>
 </androidx.constraintlayout.motion.widget.MotionLayout>
 
-      barVisualizer.visibility = View.INVISIBLE
+barVisualizer.visibility = View.INVISIBLE
 barVisualizer.animate().alpha(1f).setDuration(220).withStartAction { barVisualizer.visibility = View.VISIBLE }
+
