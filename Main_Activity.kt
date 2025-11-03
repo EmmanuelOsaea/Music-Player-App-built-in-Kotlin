@@ -55,6 +55,40 @@ class MainActivity : AppCompatActivity() {
             isPlaying = !isPlaying
         }
     }
+
+
+// start rotation when started
+        startAlbumRotation(binding.ivAlbumArt)
+
+        // button micro animations
+        binding.btnNext.setOnTouchListener(scaleTouchListener)
+        binding.btnPrev.setOnTouchListener(scaleTouchListener)
+
+        // seekbar periodic update with smooth animate
+        val handler = Handler(Looper.getMainLooper())
+        handler.post(object : Runnable {
+            override fun run() {
+                mediaPlayer?.let {
+                    val pos = it.currentPosition
+                    val max = it.duration
+                    binding.seekBar.max = max
+                    animateSeekTo(binding.seekBar, binding.seekBar.progress, pos)
+                }
+                handler.postDelayed(this, 500)
+            }
+        })
+    }
+
+    private val scaleTouchListener = View.OnTouchListener { v, event ->
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> v.scaleX = 0.96f; v.scaleY = 0.96f
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> v.scaleX = 1f; v.scaleY = 1f
+        }
+        false
+    }
+
+
+
       
 override fun onDestroy() {
         super.onDestroy()
