@@ -94,7 +94,12 @@ override fun onDestroy() {
         super.onDestroy()
         mediaPlayer?.release()
         mediaPlayer = null
+        stopAlbumRotation()
+        mediaPlayer?.release()
+        
     }
+}
+}
 }
 
 binding.recyclerView.layoutManager = LinearLayoutManager(this)
