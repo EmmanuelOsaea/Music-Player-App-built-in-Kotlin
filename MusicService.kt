@@ -1,4 +1,4 @@
-package com.example.musicplayer
+package com.example.musicplayer.service
 
 import android.app.*
 import android.content.Intent
@@ -14,7 +14,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.musicplayer.MainActivity
-
+import com.example.musicplayer.receiver.NotificationReceiver
 
 
 
@@ -108,6 +108,11 @@ class MusicService : Service() {
         .setOngoing(true)
         .build()
     }   }
+
+manager.createNotificationChannel(channel)
+    }
+
+
 
     override fun onDestroy() {
         mediaPlayer.release()
