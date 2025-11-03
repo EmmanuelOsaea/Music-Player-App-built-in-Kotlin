@@ -19,8 +19,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-  // Sample data
-        musicList = arrayListOf(
+ 
+        // shared element enter transition listener
+        postponeEnterTransition()
+        binding.ivAlbumArt.viewTreeObserver.addOnPreDrawListener {
+            startPostponedEnterTransition()
+            true
+        }
+
+        
+        
+        
+        
+        
+        
+        // Sample data
+ musicList = arrayListOf(
             MusicModel("Ocean Waves", "Meditation", R.raw.sample_song),
             MusicModel("Calm Mind", "Relax", R.raw.sample_song),
             MusicModel("Focus Flow", "Study", R.raw.sample_song)
