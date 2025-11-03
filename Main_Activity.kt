@@ -33,6 +33,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
       
+override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer?.release()
+        mediaPlayer = null
+    }
+}
+
+
+
         
         binding.btnPlay.setOnClickListener {
             val intent = Intent(this, MusicService::class.java).setAction("PLAY")
