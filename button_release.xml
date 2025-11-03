@@ -3,3 +3,11 @@
     android:fromXScale="0.95" android:toXScale="1.0"
     android:fromYScale="0.95" android:toYScale="1.0"
     android:duration="120" android:fillAfter="true"/>
+
+btn.setOnTouchListener { v, event ->
+    when (event.action) {
+        MotionEvent.ACTION_DOWN -> v.startAnimation(AnimationUtils.loadAnimation(v.context, R.anim.button_press))
+        MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> v.startAnimation(AnimationUtils.loadAnimation(v.context, R.anim.button_release))
+    }
+    false
+}
