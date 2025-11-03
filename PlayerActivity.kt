@@ -70,3 +70,32 @@ private fun stopAlbumRotation() {
     rotateAnimator?.cancel()
     rotateAnimator = null
 }
+
+private fun crossfade(from: View, to: View, durationMs: Long = 300L) {
+    to.alpha = 0f
+    to.visibility = View.VISIBLE
+    to.animate().alpha(1f).setDuration(durationMs).start()
+    from.animate().alpha(0f).setDuration(durationMs).withEndAction {
+        from.visibility = View.GONE
+        from.alpha = 1f // reset in case reused
+    }.start()
+}
+
+
+
+
+private var seekAnimator: ValueAnimator? = null
+
+private fun animateSeekTo(seekBar: SeekBar, from: Int, to: Int, duration: Long = 300L) {
+    seekAnimator?.cancel()
+    seekAnimator = ValueAnimator.ofInt(from, to).apply {
+        this.duration = duration
+        interpolator = DecelerateInterpolator()
+        addUpdateListener {
+            seekBar.progress = it.animatedValue as Int
+        }
+        start()
+    }
+}
+
+
