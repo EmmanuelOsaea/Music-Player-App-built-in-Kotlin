@@ -40,6 +40,36 @@ startService(serviceIntent)
         }
     }
 
+
+
+class PlayerActivity : AppCompatActivity() {
+    private lateinit var motionLayout: MotionLayout
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_player_motion)
+
+        motionLayout = findViewById(R.id.motionLayout)
+
+        // Optional: Expand player when album art is tapped
+        findViewById<ImageView>(R.id.ivAlbumArt).setOnClickListener {
+            if (motionLayout.progress < 0.5f) {
+                motionLayout.transitionToEnd()
+            } else {
+                motionLayout.transitionToStart()
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+    
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer?.release()
