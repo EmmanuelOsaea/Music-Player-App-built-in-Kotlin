@@ -1,6 +1,10 @@
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<service
+    android:name=".service.MusicService"
+    android:exported="false" />
 
+<receiver android:name=".receiver.NotificationReceiver" />
 <application
     ... >
     <service
