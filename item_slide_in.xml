@@ -3,3 +3,5 @@
     <translate android:fromYDelta="20%" android:toYDelta="0%" android:duration="320"/>
     <alpha android:fromAlpha="0.0" android:toAlpha="1.0" android:duration="320"/>
 </set>
+
+holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_slide_in)
