@@ -58,7 +58,17 @@ binding.recyclerView.layoutManager = LinearLayoutManager(this)
     }
 }
 
+// inside ViewHolder click
+holder.itemView.setOnClickListener { view ->
+    val intent = Intent(view.context, PlayerActivity::class.java)
+    intent.putExtra("songIndex", position)
 
+    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+        view.context as Activity,
+        Pair.create(holder.binding.imageAlbumArt as View, "albumArtTransition")
+    )
+    view.context.startActivity(intent, options.toBundle())
+}
 
         
         binding.btnPlay.setOnClickListener {
