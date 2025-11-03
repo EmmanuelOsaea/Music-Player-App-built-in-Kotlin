@@ -45,3 +45,28 @@ startService(serviceIntent)
         mediaPlayer?.release()
     }
 }
+
+private var rotateAnimator: ObjectAnimator? = null
+
+private fun startAlbumRotation(view: View) {
+    rotateAnimator?.cancel()
+    rotateAnimator = ObjectAnimator.ofFloat(view, View.ROTATION, 0f, 360f).apply {
+        duration = 12000L // 12s per revolution
+        interpolator = LinearInterpolator()
+        repeatCount = ValueAnimator.INFINITE
+        start()
+    }
+}
+
+private fun pauseAlbumRotation() {
+    rotateAnimator?.pause()
+}
+
+private fun resumeAlbumRotation() {
+    rotateAnimator?.resume()
+}
+
+private fun stopAlbumRotation() {
+    rotateAnimator?.cancel()
+    rotateAnimator = null
+}
