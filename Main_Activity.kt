@@ -19,7 +19,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-    mediaPlayer = MediaPlayer.create(this, R.raw.sample_song)
+  // Sample data
+        musicList = arrayListOf(
+            MusicModel("Ocean Waves", "Meditation", R.raw.sample_song),
+            MusicModel("Calm Mind", "Relax", R.raw.sample_song),
+            MusicModel("Focus Flow", "Study", R.raw.sample_song)
+        )
+        
+        
+        
+        mediaPlayer = MediaPlayer.create(this, R.raw.sample_song)
 
         binding.playButton.setOnClickListener {
             if (isPlaying) {
@@ -37,6 +46,15 @@ override fun onDestroy() {
         super.onDestroy()
         mediaPlayer?.release()
         mediaPlayer = null
+    }
+}
+
+binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = MusicAdapter(musicList) { music ->
+            val intent = Intent(this, PlayerActivity::class.java)
+            intent.putExtra("music", music)
+            startActivity(intent)
+        }
     }
 }
 
