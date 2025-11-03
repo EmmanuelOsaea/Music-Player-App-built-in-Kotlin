@@ -117,3 +117,42 @@ val intent = Intent(this, MusicService::class.java)
 intent.putExtra("song_res", R.raw.sample_music) // replace with actual song
 startForegroundService(intent)
 
+private val PERMISSION_REQUEST_CODE = 100
+
+private fun checkPermission() {
+    if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        != PackageManager.PERMISSION_GRANTED
+    ) {
+        requestPermissions(
+            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+            PERMISSION_REQUEST_CODE
+        )
+    } else {
+        loadSongs()
+    }
+}
+
+override fun onRequestPermissionsResult(
+    requestCode: Int,
+    permissions: Array<out String>,
+    grantResults: IntArray
+) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    if (requestCode == PERMISSION_REQUEST_CODE && grantResults.isNotEmpty()
+        && grantResults[0] == PackageManager.PERMISSION_GRANTED
+    ) {
+        loadSongs()
+    }
+}
+
+private fun loadSongs() {
+    val songs = MusicScanner.getAllAudioFiles(this)
+    // Update RecyclerView adapter here
+    adapter.updateSongs(songs)
+}
+
+fun updateSongs(newList: List<Song>) {
+    songs.clear()
+    songs.addAll(newList)
+    notifyDataSetChanged()
+}
